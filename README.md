@@ -1,0 +1,2 @@
+# Beyond-Accuracy-Explanation-Instability-Under-Decision-Uncertainty-in-Credit-Risk-Classification
+the experimental framework used to evaluate post-hoc explanation behavior across regions of decision confidence. The pipeline comprises data preprocessing, ensemble model training and validation, stratification of test predictions, perturbation-based stability analysis, and cross-method agreement evaluation.
