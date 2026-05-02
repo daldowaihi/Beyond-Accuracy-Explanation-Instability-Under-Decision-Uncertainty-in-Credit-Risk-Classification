@@ -2,6 +2,8 @@
 
 A reproducible study of **how stable post-hoc explanations are** for credit-default classifiers when the model itself is uncertain. We show that explanation stability collapses precisely in the region where model decisions matter most: the **borderline zone** and, especially, the **confident-but-wrong zone** — exactly where a loan officer would lean on the explanation to overrule the score.
 
+RQ:
+How does the reliability of post-hoc explanations for ensemble credit-default models — measured both as within-method stability under input perturbation and as cross-method agreement between TreeSHAP and LIME — vary across strata defined jointly by decision confidence and correctness, and in particular on Confident-Incorrect predictions?
 ---
 
 ## 📐 Experimental framework
