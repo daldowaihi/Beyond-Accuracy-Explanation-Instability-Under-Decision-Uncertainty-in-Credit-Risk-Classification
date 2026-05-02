@@ -18,11 +18,8 @@ See the paper for the full discussion.
 
 ```
 .
-├── Credit_XAI_Dalal_ALdowaihi.ipynb   # End-to-end experimental notebook
-├── outputs/
-│   ├── tables/                        # CSVs of all per-instance and summary results
-│   ├── figures/                       # PNGs for every figure in the paper
-│   └── models/                        # (optional) pickled trained models
+├── Credit_XAI.ipynb   # End-to-end experimental notebook
+├── outputs/                            # PNGs for every figure in the paper
 ├── data/
 │   └── default_of_credit_card_clients.xls   # Auto-downloaded on first run
 └── README.md
