@@ -7,11 +7,6 @@ This repository evaluates the reliability of post-hoc explanation methods (TreeS
 
 *Figure 1 — Overview of the proposed framework: data preprocessing, ensemble training, three-stratum partitioning of test predictions, and the two explanation-reliability experiments (perturbation stability and cross-method agreement).*
 
-<p align="center">
-  <img src="docs/framework.png" alt="Proposed experimental framework for credit-default XAI stability analysis" width="850"/>
-</p>
-<p align="center"><em>Figure 1 — Overview of the proposed framework: data preprocessing, ensemble training, three-stratum partitioning of test predictions, and the two explanation-reliability experiments (perturbation stability and cross-method agreement).</em></p>
-
 ## Headline findings
 
 - Within-method stability follows a **non-monotonic U-shape** across the three strata: Borderline attributions are substantially less stable than either confident stratum, while Confident-Incorrect attributions are statistically indistinguishable from Confident-Correct ones.
