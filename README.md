@@ -6,6 +6,12 @@ This repository evaluates the reliability of post-hoc explanation methods (TreeS
 ![Proposed experimental framework for credit-default XAI stability analysis](framework.png)
 
 *Figure 1 — Overview of the proposed framework: data preprocessing, ensemble training, three-stratum partitioning of test predictions, and the two explanation-reliability experiments (perturbation stability and cross-method agreement).*
+
+<p align="center">
+  <img src="docs/framework.png" alt="Proposed experimental framework for credit-default XAI stability analysis" width="850"/>
+</p>
+<p align="center"><em>Figure 1 — Overview of the proposed framework: data preprocessing, ensemble training, three-stratum partitioning of test predictions, and the two explanation-reliability experiments (perturbation stability and cross-method agreement).</em></p>
+
 ## Headline findings
 
 - Within-method stability follows a **non-monotonic U-shape** across the three strata: Borderline attributions are substantially less stable than either confident stratum, while Confident-Incorrect attributions are statistically indistinguishable from Confident-Correct ones.
@@ -54,12 +60,8 @@ The notebook also runs in Google Colab without local setup — the first cell in
 ```bash
 git clone https://github.com/<your-username>/<this-repo>.git
 cd <this-repo>
-jupyter notebook Credit_XAI_Dalal_ALdowaihi.ipynb
+jupyter notebook Credit_XAI.ipynb
 ```
-
-Then **Kernel → Restart & Run All**. All outputs (tables and figures) are written to `outputs/` and embedded inline in the notebook.
-
-For a fast smoke test that takes ~3–5 minutes instead of the full ~45–90 minutes, set `QUICK_MODE = True` in the configuration cell. Quick mode reduces samples per stratum from 100 to 20, perturbations per instance from 30 to 10, and LIME samples from 5000 to 1000. Quick-mode results are not the values reported in the paper.
 
 ## Reproducing the paper
 
@@ -74,17 +76,6 @@ All randomness is controlled by a single seed (`SEED = 42` in the configuration 
 
 > **Important:** Re-run the notebook with a clean kernel — do not rely on cached cell outputs. Some intermediate results (Experiment B and the final statistical tables) consume variables produced earlier in the notebook, and partial re-runs can produce stale numbers.
 
-Expected runtime on a modern laptop:
-
-| Stage | Time |
-|---|---|
-| Data loading + EDA | < 1 min |
-| Train RF + GBM (with grid search) | 2–5 min |
-| TreeSHAP / LIME explainers + global beeswarm | 1–2 min |
-| Experiment A (perturbation stability, both models) | 20–40 min |
-| σ-sweep on Random Forest | 10–20 min |
-| Experiment B (cross-method agreement) | 5–10 min |
-| Statistical tests + figures | < 1 min |
 
 LIME is the dominant cost; reducing `LIME_NUM_SAMPLES` shortens the run at the cost of higher per-instance LIME variance.
 
@@ -96,7 +87,7 @@ LIME is the dominant cost; reducing `LIME_NUM_SAMPLES` shortens the run at the c
 - **Stability metrics (per instance):** Spearman ρ over the full attribution vector; Jaccard similarity over the Top-5 features by `|ϕ|`. Higher = more stable.
 - **Statistical tests:** Mann–Whitney U (two-sided) of each stratum vs. Confident-Correct, with Holm–Bonferroni correction at m = 2 comparisons per metric. Effect size reported as rank-biserial correlation.
 
-See `Credit_XAI_Dalal_ALdowaihi.ipynb` Section 3 (or the paper's Section 3) for the full protocol.
+See `Credit_XAI.ipynb` Section 3 (or the paper's Section 3) for the full protocol.
 
 ## Configuration knobs
 
@@ -115,20 +106,6 @@ All experimental parameters are in a single configuration cell at the top of the
 | `BORDERLINE_LOW`, `BORDERLINE_HIGH` | 0.40, 0.60 | Borderline-band thresholds |
 | `ALPHA` | 0.05 | Significance level |
 
-## Output files
-
-After a clean run, `outputs/tables/` contains:
-
-- `test_metrics.csv` — predictive performance for both ensembles
-- `stratum_counts.csv` — realized stratum populations
-- `expA_random_forest_per_instance.csv`, `expA_gradient_boosting_per_instance.csv` — per-instance Experiment A results
-- `expA_random_forest_sigma{0.01,0.05}_per_instance.csv` — σ-sweep results
-- `expB_random_forest_per_instance.csv`, `expB_gradient_boosting_per_instance.csv` — per-instance Experiment B results
-- `stat_tests_all.csv` — Mann–Whitney + Holm–Bonferroni test results for every metric × stratum × model
-- `sigma_sweep_summary.csv` — per-stratum medians at each σ
-- `global_importance.csv` — top-N feature importance for both models
-
-`outputs/figures/` contains the corresponding PNGs (`expA_*`, `expB_heatmap_*`, `summary_expA_*`, `shap_beeswarm_*`, `global_importance.png`, etc.).
 
 ## Citation
 
