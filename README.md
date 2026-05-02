@@ -3,7 +3,9 @@
 Code and experiments for the paper *Beyond Accuracy: Explanation Instability Under Decision Uncertainty in Credit Risk Classification* (Aldowaihi & Al-Jamimi).
 
 This repository evaluates the reliability of post-hoc explanation methods (TreeSHAP and LIME) for credit-default ensemble classifiers, conditioned on the model's decision confidence. The headline contribution is a three-stratum analysis — **Confident-Correct**, **Borderline**, and **Confident-Incorrect** — that treats high-confidence-but-wrong predictions as a distinct unit of analysis rather than aggregating them into a global error pool.
+![Proposed experimental framework for credit-default XAI stability analysis](docs/framework.png)
 
+*Figure 1 — Overview of the proposed framework: data preprocessing, ensemble training, three-stratum partitioning of test predictions, and the two explanation-reliability experiments (perturbation stability and cross-method agreement).*
 ## Headline findings
 
 - Within-method stability follows a **non-monotonic U-shape** across the three strata: Borderline attributions are substantially less stable than either confident stratum, while Confident-Incorrect attributions are statistically indistinguishable from Confident-Correct ones.
