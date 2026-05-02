@@ -8,7 +8,7 @@ How does the reliability of post-hoc explanations for ensemble credit-default mo
 
 ## 📐 Experimental framework
 
-![Experimental Framework](Framework_4.png)
+![Experimental Framework](Framework.png)
 
 The pipeline runs end-to-end inside a single notebook:
 
@@ -41,16 +41,13 @@ The pipeline runs end-to-end inside a single notebook:
 
 ```
 .
-├── Credit_XAI_Result_Visualized.ipynb   # main notebook (all figures inline)
-├── Framework_4.png                      # the framework diagram above
-├── outputs/
-│   ├── tables/                          # CSV results per experiment & stratum
-│   ├── figures/                         # PNG/PDF copies of every figure
-│   └── models/                          # pickled RF and GBM
+├── Credit_XAI.ipynb                     # main notebook (all figures inline)
+├── Framework.png                        # the framework diagram above
+├── outputs/                             # PNG/PDF copies of every figure
 └── README.md
 ```
 
-The notebook itself is organised into 16 sections that mirror the framework one-to-one:
+The notebook itself is organised into 16 sections that mirror the framework:
 
 | § | Section | Visual output |
 |---|---|---|
@@ -65,7 +62,6 @@ The notebook itself is organised into 16 sections that mirror the framework one-
 | 12 | Experiment B — cross-method agreement | Heatmap + violin |
 | 13 | Mann–Whitney U + Holm–Bonferroni | Rank-biserial heatmap with significance stars |
 | 14 | Summary | Stratum-median bars; global feature importance |
-| 15–16 | Headline numbers + zipped artefacts | — |
 
 ---
 
