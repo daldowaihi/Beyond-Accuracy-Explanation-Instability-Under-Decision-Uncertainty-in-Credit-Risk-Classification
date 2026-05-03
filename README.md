@@ -13,7 +13,6 @@ This repository evaluates the reliability of post-hoc explanation methods (TreeS
 - TreeSHAP and LIME **anti-correlate** at the Borderline stratum (median Spearman ρ ≈ −0.4 under both ensembles).
 - Under Gradient Boosting, cross-method Top-5 feature overlap **collapses on Confident-Incorrect cases** (a degradation that does not appear under Random Forest), suggesting cross-explainer disagreement may be a more useful audit signal than within-method instability.
 
-See the paper for the full discussion.
 
 ## Repository contents
 
@@ -25,8 +24,6 @@ See the paper for the full discussion.
 │   └── default_of_credit_card_clients.xls   # Auto-downloaded on first run
 └── README.md
 ```
-
-The notebook is the single source of truth — every table and figure in the paper is produced by it.
 
 ## Dataset
 
@@ -69,9 +66,6 @@ All randomness is controlled by a single seed (`SEED = 42` in the configuration 
 - σ-sweep robustness check at σ ∈ {0.01, 0.03, 0.05} (Table 12)
 - Cross-method agreement medians and distributions (Section 4.5–4.7)
 
-> **Important:** Re-run the notebook with a clean kernel — do not rely on cached cell outputs. Some intermediate results (Experiment B and the final statistical tables) consume variables produced earlier in the notebook, and partial re-runs can produce stale numbers.
-
-
 LIME is the dominant cost; reducing `LIME_NUM_SAMPLES` shortens the run at the cost of higher per-instance LIME variance.
 
 ## Method summary
@@ -82,7 +76,7 @@ LIME is the dominant cost; reducing `LIME_NUM_SAMPLES` shortens the run at the c
 - **Stability metrics (per instance):** Spearman ρ over the full attribution vector; Jaccard similarity over the Top-5 features by `|ϕ|`. Higher = more stable.
 - **Statistical tests:** Mann–Whitney U (two-sided) of each stratum vs. Confident-Correct, with Holm–Bonferroni correction at m = 2 comparisons per metric. Effect size reported as rank-biserial correlation.
 
-See `Credit_XAI.ipynb` Section 3 (or the paper's Section 3) for the full protocol.
+See `Credit_XAI_Result_Visualized.ipynb` for the full protocol.
 
 ## Configuration knobs
 
@@ -100,27 +94,6 @@ All experimental parameters are in a single configuration cell at the top of the
 | `CONFIDENT_LOW`, `CONFIDENT_HIGH` | 0.20, 0.80 | Confident-band thresholds |
 | `BORDERLINE_LOW`, `BORDERLINE_HIGH` | 0.40, 0.60 | Borderline-band thresholds |
 | `ALPHA` | 0.05 | Significance level |
-
-
-## Citation
-
-If you use this code or build on the analysis, please cite the paper:
-
-```bibtex
-@misc{aldowaihi_aljamimi_2025_explanation_instability,
-  title  = {Beyond Accuracy: Explanation Instability Under Decision
-            Uncertainty in Credit Risk Classification},
-  author = {Aldowaihi, Dalal and Al-Jamimi, Hamdi},
-  year   = {2025},
-  note   = {Computer Science Department, KFUPM}
-}
-```
-
-The dataset itself should be cited as Yeh & Lien (2009).
-
-## License
-
-Code is released under the MIT License (see `LICENSE`). The UCI Default of Credit Card Clients dataset is distributed by the UCI Machine Learning Repository and subject to its terms.
 
 ## Contact
 
